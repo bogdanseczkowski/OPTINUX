@@ -68,14 +68,16 @@ cat << EOF | chroot .
 
 emerge-webrsync
 eselect profile set "default/linux/amd64/17.0/hardened"
-
+emerge cpuid2cpuflags
 echo '
 CFLAGS="-O3 -march=native -pipe -funroll-loops -floop-block -floop-interchange -floop-strip-mine -ftree-loop-distribution"
 CXXFLAGS="\${CFLAGS}"
-CPU_FLAGS_X86="mmx mmxext sse sse2 ssse3 sse3"
 MAKEOPTS="-j8"
 ACCEPT_LICENSE="*"
 ACCEPT_KEYWORDS="**"' >> /etc/portage/make.conf
+CPU=$(cpuid2cpuflags)
+out="${CPU//': '/=\"}"
+echo "$out" \" >> /etc/portage/make.conf
 
 emerge  world
 
