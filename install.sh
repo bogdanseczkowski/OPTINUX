@@ -70,7 +70,7 @@ emerge-webrsync
 eselect profile set "default/linux/amd64/17.0/hardened"
 emerge cpuid2cpuflags
 echo '
-CFLAGS="-O3 -march=native -pipe -funroll-loops -floop-block -floop-interchange -floop-strip-mine -ftree-loop-distribution"
+CFLAGS="-O3 -march=native -pipe"
 CXXFLAGS="\${CFLAGS}"
 MAKEOPTS="-j8"
 ACCEPT_LICENSE="*"
