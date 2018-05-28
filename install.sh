@@ -72,9 +72,7 @@ emerge cpuid2cpuflags
 echo '
 CFLAGS="-O3 -march=native -pipe"
 CXXFLAGS="\${CFLAGS}"
-MAKEOPTS="-j8"
-ACCEPT_LICENSE="*"
-ACCEPT_KEYWORDS="**"' >> /etc/portage/make.conf
+MAKEOPTS="-j8"' >> /etc/portage/make.conf
 CPU=$(cpuid2cpuflags)
 out="${CPU//': '/=\"}"
 echo "$out" \" >> /etc/portage/make.conf
