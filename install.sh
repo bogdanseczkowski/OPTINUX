@@ -43,6 +43,7 @@ done
 mkdir gentoo
 
 if [[ $partitioning = "a" ]]; then
+    dd if=/dev/zero of=/dev/$drive bs=512 count=1
     echo -e "o\nn\np\n1\n\n\nw" | fdisk /dev/$drive
     mkfs.ext4 -F /dev/$partition
 fi
