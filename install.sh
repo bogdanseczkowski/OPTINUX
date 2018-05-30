@@ -35,9 +35,6 @@ done
 while :; do
     echo
     read -erp "Enter preferred root password " rootpassword
-    read -erp "Enter preferred username " user
-    read -erp "Enter preferred user password " userpassword
-    read -erp "Is this correct? [y/n] " -n 1 yn
     if [[ $yn == "y" ]]; then
         break
     fi
@@ -53,6 +50,12 @@ tune2fs -O ^metadata_csum /dev/$partition
 mount /dev/$partition gentoo
 
 cd gentoo
+
+fallocate -l 4G ./swapfile
+chmod 600 ./swapfile
+mkswap ./swapfile
+swapon ./swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a ./etc/fstab
 
 builddate=$(curl -s http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64/ | sed -nr 's/.*href="stage3-amd64-([0-9].*).tar.xz">.*/\1/p')
 wget http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-$builddate.tar.xz
@@ -82,6 +85,7 @@ emerge  world
 emerge gentoo-sources genkernel
 wget http://liquorix.net/sources/4.15/config.amd64
 genkernel --kernel-config=config.amd64 all
+rm ./config.amd64
 
 emerge grub dhcpcd
 
@@ -91,13 +95,7 @@ grub-mkconfig -o /boot/grub/grub.cfg &> /dev/null
 rc-update add dhcpcd default
 
 echo "root:$rootpassword" | chpasswd
-useradd $user
-echo "$user:$userpassword" | chpasswd
-gpasswd -a $user wheel
 
-
-sed -Ei "s@c([2-6]):2345:respawn:/sbin/agetty 38400 tty@#\0@" /etc/inittab
-sed -i "s@c1:12345:respawn:/sbin/agetty 38400 tty1 linux@c1:12345:respawn:/sbin/agetty --noclear 38400 tty1 linux@" /etc/inittab
 sed -i "s/set timeout=5/set timeout=0/" /boot/grub/grub.cfg
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
