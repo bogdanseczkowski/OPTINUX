@@ -87,7 +87,7 @@ wget http://liquorix.net/sources/4.15/config.amd64
 genkernel --kernel-config=config.amd64 all
 rm ./config.amd64
 
-emerge grub dhcpcd
+emerge app-portage/gentoolkit grub dhcpcd
 
 grub-install --target=i386-pc /dev/$drive &> /dev/null
 grub-mkconfig -o /boot/grub/grub.cfg &> /dev/null
@@ -102,7 +102,8 @@ locale-gen
 eselect locale set en_US.utf8
 
 emerge --depclean
-rm -Rf /usr/portage/packages/*
+eclean-dist --deep
+eclean-pkg --deep
 
 exit
 
