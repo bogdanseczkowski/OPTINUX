@@ -84,7 +84,7 @@ echo "$out" \" >> /etc/portage/make.conf
 emerge  world
 
 emerge gentoo-sources genkernel
-wget http://liquorix.net/sources/4.15/config.amd64
+wget https://raw.githubusercontent.com/bogdanseczkowski/STRIP-LINUX/master/config/4.9/config.amd64
 genkernel --kernel-config=config.amd64 all
 rm ./config.amd64
 
