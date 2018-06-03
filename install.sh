@@ -59,6 +59,6 @@ mount --rbind /dev dev
 mount --rbind /sys sys
 cp ../chroot.sh ./chroot.ch
 chmod +x ./chroot.sh
-chroot ./chroot.sh
+chroot . /chroot.sh
 
 reboot
