@@ -1,3 +1,4 @@
+#!/bin/bash
 emerge-webrsync
 eselect profile set "default/linux/amd64/17.0/hardened"
 emerge cpuid2cpuflags
