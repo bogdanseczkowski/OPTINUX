@@ -37,7 +37,6 @@ if [[ $partitioning = "a" ]]; then
     echo -e "o\nn\np\n1\n\n\nw" | fdisk /dev/$drive
     mkfs.ext4 -F /dev/$partition
 fi
-tune2fs -O ^metadata_csum /dev/$partition
 mount /dev/$partition gentoo
 
 cd gentoo
@@ -46,15 +45,15 @@ fallocate -l 4G ./swapfile
 chmod 600 ./swapfile
 mkswap ./swapfile
 swapon ./swapfile
-echo '/swapfile none swap sw 0 0' | tee -a ./etc/fstab
 
 builddate=$(curl -s http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64/ | sed -nr 's/.*href="stage3-amd64-([0-9].*).tar.xz">.*/\1/p')
 wget http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-$builddate.tar.xz
 tar xpf stage3-* --xattrs-include='*.*' --numeric-owner
 rm -f stage3*
+echo '/swapfile none swap sw 0 0' | tee -a ./etc/fstab
 
 cp /etc/resolv.conf etc
-mount -t proc none proc
+mount -t /proc none proc
 mount --rbind /dev dev
 mount --rbind /sys sys
 cp ../chroot.sh ./chroot.ch
