@@ -5,6 +5,7 @@ emerge cpuid2cpuflags
 echo '
 CFLAGS="-O3 -march=native -pipe"
 CXXFLAGS="\${CFLAGS}"
+EMERGE_DEFAULT_OPTS="--keep-going=y --autounmask-write=y"
 MAKEOPTS="-j8"' >> /etc/portage/make.conf
 CPU=$(cpuid2cpuflags)
 out="${CPU//': '/=\"}"
@@ -13,7 +14,7 @@ echo "$out" \" >> /etc/portage/make.conf
 emerge  world
 
 emerge gentoo-sources genkernel
-wget https://raw.githubusercontent.com/bogdanseczkowski/STRIP-LINUX/master/config/4.9/config.amd64
+wget https://raw.githubusercontent.com/bogdanseczkowski/STRIP-LINUX/master/config/4.14/config.amd64
 genkernel --kernel-config=config.amd64 all
 rm ./config.amd64
 
