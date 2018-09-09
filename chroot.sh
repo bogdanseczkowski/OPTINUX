@@ -6,7 +6,7 @@ np=$(nproc)
 enp= `expr $np + 1`
 echo '
 CFLAGS="-O3 -march=native -pipe"
-CXXFLAGS="\${CFLAGS}"
+CXXFLAGS="${CFLAGS}"
 EMERGE_DEFAULT_OPTS="--keep-going=y --autounmask-write=y"
 MAKEOPTS="-j$enp"' >> /etc/portage/make.conf
 CPU=$(cpuid2cpuflags)
@@ -17,12 +17,12 @@ emerge  world
 
 emerge gentoo-sources genkernel
 echo -e "y\n" | etc-update --automode -3
-emerge gentoo-sources genkernel
+emerge gentoo-sources genkernel app-arch/lz4
 wget https://raw.githubusercontent.com/bogdanseczkowski/STRIP-LINUX/master/config/4.14/config.amd64
 genkernel --kernel-config=config.amd64 all
 rm ./config.amd64
 
-emerge app-portage/gentoolkit grub dhcpcd
+emerge app-portage/gentoolkit grub dhcpcd 
 
 grub-install --target=i386-pc /dev/$drive &> /dev/null
 grub-mkconfig -o /boot/grub/grub.cfg &> /dev/null
