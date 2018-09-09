@@ -53,9 +53,14 @@ rm -f stage3*
 echo '/swapfile none swap sw 0 0' | tee -a ./etc/fstab
 
 cp /etc/resolv.conf etc
-mount -t /proc none proc
-mount --rbind /dev dev
-mount --rbind /sys sys
+mount --types proc /proc ./gentoo/proc
+mount --rbind /sys ./gentoo/sys
+mount --make-rslave ./gentoo/sys
+mount --rbind /dev ./gentoo/dev
+mount --make-rslave ./gentoo/dev
+#mount -t /proc none proc
+#mount --rbind /dev dev
+#mount --rbind /sys sys
 cp ../chroot.sh ./chroot.sh
 chmod +x ./chroot.sh
 chroot . /chroot.sh
