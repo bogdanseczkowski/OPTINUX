@@ -2,7 +2,7 @@ The OPTINUX project aims to create Linux distro that is well optimized and by th
 To install OPTINUX
 1. Download and burn Gentoo minimal live
 2. Boot  Gentoo minimal live on your PC
-3. Download and run install.sh from STRIP-LINUX Github.
+3. Download and run install.sh from OPTINUX Github.
 4. Reboot
 
 To Do:
