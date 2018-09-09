@@ -56,7 +56,7 @@ cp /etc/resolv.conf etc
 mount -t /proc none proc
 mount --rbind /dev dev
 mount --rbind /sys sys
-cp ../chroot.sh ./chroot.ch
+cp ../chroot.sh ./chroot.sh
 chmod +x ./chroot.sh
 chroot . /chroot.sh
 
