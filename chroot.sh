@@ -33,7 +33,6 @@ rc-update add dhcpcd sshd default
 
 echo "root:$rootpassword" | chpasswd
 
-sed -i "s/set timeout=5/set timeout=0/" /boot/grub/grub.cfg
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 eselect locale set en_US.utf8
