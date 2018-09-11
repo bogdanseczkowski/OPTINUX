@@ -23,7 +23,7 @@ wget https://raw.githubusercontent.com/bogdanseczkowski/STRIP-LINUX/master/confi
 genkernel --kernel-config=config.amd64 all
 rm ./config.amd64
 
-merge --ask --newuse --deep sys-boot/grub:2
+emerge  --newuse --deep sys-boot/grub:2
 emerge app-portage/gentoolkit dhcpcd 
 
 grub-install --target=i386-pc /dev/$drive &> /dev/null
