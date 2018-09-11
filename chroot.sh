@@ -29,9 +29,10 @@ emerge app-portage/gentoolkit dhcpcd
 grub-install --target=i386-pc /dev/$drive &> /dev/null
 grub-mkconfig -o /boot/grub/grub.cfg &> /dev/null
 
-rc-update add dhcpcd sshd default
+rc-update add dhcpcd default
+rc-update add sshd default
 
-echo "root:$rootpassword" | chpasswd
+echo "root:toor" | chpasswd
 
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
