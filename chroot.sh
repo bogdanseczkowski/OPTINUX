@@ -8,7 +8,7 @@ echo '
 CFLAGS="-O3 -march=native -pipe"
 CXXFLAGS="${CFLAGS}"
 EMERGE_DEFAULT_OPTS="--keep-going=y --autounmask-write=y"
-MAKEOPTS="-j$enp"' >> /etc/portage/make.conf
+MAKEOPTS="-j'$enp\" >> /etc/portage/make.conf
 CPU=$(cpuid2cpuflags)
 out="${CPU//': '/=\"}"
 echo "$out" \" >> /etc/portage/make.conf
