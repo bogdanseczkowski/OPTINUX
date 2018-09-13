@@ -3,7 +3,7 @@ emerge-webrsync
 eselect profile set "default/linux/amd64/17.0/hardened"
 emerge cpuid2cpuflags
 np=$(nproc)
-enp= `expr $np + 1`
+enp=`expr $np + 1`
 echo '
 CFLAGS="-O3 -march=native -pipe"
 CXXFLAGS="${CFLAGS}"
