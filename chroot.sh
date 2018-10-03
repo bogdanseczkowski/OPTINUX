@@ -20,6 +20,7 @@ echo -e "y\n" | etc-update --automode -3
 emerge gentoo-sources genkernel curl
 emerge app-arch/lz4
 wget https://raw.githubusercontent.com/bogdanseczkowski/STRIP-LINUX/master/config/4.14/config.amd64
+sed -i "s/CONFIG_EXT4_FS=m/CONFIG_EXT4_FS=y/g" config.amd64
 genkernel --kernel-config=config.amd64 all
 rm ./config.amd64
 
