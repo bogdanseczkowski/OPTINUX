@@ -27,8 +27,9 @@ rm ./config.amd64
 emerge  --newuse --deep sys-boot/grub:2
 emerge app-portage/gentoolkit dhcpcd 
 
-grub-install --target=i386-pc /dev/$drive &> /dev/null
-grub-mkconfig -o /boot/grub/grub.cfg &> /dev/null
+read -erp "Enter drive for GRUB2 installation: " -i "/dev/sda" drive
+grub-install --target=i386-pc /dev/$drive
+grub-mkconfig -o /boot/grub/grub.cfg
 
 rc-update add dhcpcd default
 rc-update add sshd default
