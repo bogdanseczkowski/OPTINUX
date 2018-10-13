@@ -12,16 +12,20 @@ MAKEOPTS="-j'$enp\" >> /etc/portage/make.conf
 CPU=$(cpuid2cpuflags)
 out="${CPU//': '/=\"}"
 echo "$out" \" >> /etc/portage/make.conf
-
+echo '=sys-devel/gcc-8.2.0-r3 ~amd64' >> /etc/portage/package.keywords
 emerge  world
 
-emerge gentoo-sources genkernel
+emerge git-sources genkernel curl app-arch/lz4 sys-boot/grub:2 app-portage/gentoolkit dhcpcd
 echo -e "y\n" | etc-update --automode -3
-emerge gentoo-sources genkernel curl
+emerge git-sources genkernel curl
 emerge app-arch/lz4
-wget https://raw.githubusercontent.com/bogdanseczkowski/STRIP-LINUX/master/config/4.14/config.amd64
+wget https://raw.githubusercontent.com/bogdanseczkowski/STRIP-LINUX/master/config/4.18/config.amd64
 sed -i "s/CONFIG_EXT4_FS=m/CONFIG_EXT4_FS=y/g" config.amd64
-genkernel --kernel-config=config.amd64 all
+cd /usr/src/linux
+wget https://raw.githubusercontent.com/bogdanseczkowski/OPTINUX/master/config/patch/grasky2kernel.patch
+echo -e "./arch/x86/include/asm/module.h\n./arch/x86/Kconfig.cpu\n./arch/x86/Makefile_32.cpu\n" | patch -i ./grasky2kernel.patch -d ./
+cd /
+genkernel --menuconfig --kernel-config=config.amd64 all
 rm ./config.amd64
 
 emerge  --newuse --deep sys-boot/grub:2
