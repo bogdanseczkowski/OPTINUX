@@ -23,7 +23,7 @@ wget https://raw.githubusercontent.com/bogdanseczkowski/STRIP-LINUX/master/confi
 sed -i "s/CONFIG_EXT4_FS=m/CONFIG_EXT4_FS=y/g" config.amd64
 cd /usr/src/linux
 wget https://raw.githubusercontent.com/bogdanseczkowski/OPTINUX/master/config/patch/grasky2kernel.patch
-echo -e "./arch/x86/include/asm/module.h\n./arch/x86/Kconfig.cpu\n./arch/x86/Makefile_32.cpu\n" | patch -i ./grasky2kernel.patch -d ./
+patch -Np1 -i ./grasky2kernel.patch
 cd /
 genkernel --menuconfig --kernel-config=config.amd64 all
 rm ./config.amd64
