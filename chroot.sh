@@ -17,6 +17,7 @@ emerge  world
 
 emerge git-sources genkernel curl app-arch/lz4 sys-boot/grub:2 app-portage/gentoolkit dhcpcd
 echo -e "y\n" | etc-update --automode -3
+echo -e "y\n" | etc-update --automode -3
 emerge git-sources genkernel curl
 emerge app-arch/lz4
 wget https://raw.githubusercontent.com/bogdanseczkowski/STRIP-LINUX/master/config/4.18/config.amd64
