@@ -14,11 +14,14 @@ out="${CPU//': '/=\"}"
 echo "$out" \" >> /etc/portage/make.conf
 echo '=sys-devel/gcc-8.2.0-r3 ~amd64' >> /etc/portage/package.keywords
 emerge  world
-
 emerge git-sources genkernel curl app-arch/lz4 sys-boot/grub:2 app-portage/gentoolkit dhcpcd
 echo -e "y\n" | etc-update --automode -3
 echo -e "y\n" | etc-update --automode -3
-emerge git-sources genkernel curl
+emerge app-portage/gentoolkit
+gcc-config 2 
+source /etc/profile
+revdep-rebuild
+emerge git-sources genkernel curl 
 emerge app-arch/lz4
 wget https://raw.githubusercontent.com/bogdanseczkowski/STRIP-LINUX/master/config/4.18/config.amd64
 sed -i "s/CONFIG_EXT4_FS=m/CONFIG_EXT4_FS=y/g" config.amd64
@@ -30,7 +33,7 @@ genkernel --menuconfig --kernel-config=config.amd64 all
 rm ./config.amd64
 
 emerge  --newuse --deep sys-boot/grub:2
-emerge app-portage/gentoolkit dhcpcd 
+emerge dhcpcd 
 
 read -erp "Enter drive for GRUB2 installation: " -i "/dev/sda" drive
 grub-install --target=i386-pc /dev/$drive
