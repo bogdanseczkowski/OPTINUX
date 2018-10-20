@@ -36,7 +36,7 @@ emerge  --newuse --deep sys-boot/grub:2
 emerge dhcpcd 
 
 read -erp "Enter drive for GRUB2 installation: " -i "/dev/sda" drive
-grub-install --target=i386-pc /dev/$drive
+grub-install --target=i386-pc $drive
 grub-mkconfig -o /boot/grub/grub.cfg
 
 rc-update add dhcpcd default
