@@ -5,8 +5,12 @@ emerge cpuid2cpuflags
 np=$(nproc)
 enp=`expr $np + 1`
 echo '
-CFLAGS="-O3 -march=native -pipe"
-CXXFLAGS="${CFLAGS}"
+COMMON_FLAGS="-O3 -march=native -pipe"
+CFLAGS="${COMMON_FLAGS}"
+CXXFLAGS="${COMMON_FLAGS}"
+FCFLAGS="${COMMON_FLAGS}"
+FFLAGS="${COMMON_FLAGS}"
+CHOST="x86_64-pc-linux-gnu"
 EMERGE_DEFAULT_OPTS="--keep-going=y --autounmask-write=y"
 MAKEOPTS="-j'$enp\" >> /etc/portage/make.conf
 CPU=$(cpuid2cpuflags)
