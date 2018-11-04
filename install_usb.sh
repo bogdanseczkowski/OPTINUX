@@ -18,9 +18,11 @@ cp -a iso-ori/ iso-new/
 mkdir sqfs-old/
 unsquashfs -f -d sqfs-old/ iso-ori/image.squashfs
 cp -a sqfs-old/ sqfs-new/
-cd sqfs-new/bin
+cd sqfs-new/opt
 git clone https://github.com/bogdanseczkowski/OPTINUX
 cd ../..
+chmod +x /opt/OPTINUX/install.sh
+chmod +x /opt/OPTINUX/chroot.sh
 rm iso-new/image.squashfs
 mksquashfs sqfs-new/ iso-new/image.squashfs
 echo \#\!/bin/bash >> create_iso.sh
