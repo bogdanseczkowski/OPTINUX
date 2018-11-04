@@ -10,3 +10,5 @@ The **OPTINUX** project aims to create Linux distro that is well optimized and b
 ### TODO
   - [ ] Automatic MAKE OPTS
   - [ ] automatic cflags generation (instead of -mtune=native)
+  - [ ] automatic kernel config (genkernel all)
+  - [ ] install usb
