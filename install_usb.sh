@@ -1,4 +1,4 @@
-# this script is still WIP
+# this script is still WIP but it should work
 # todo automatic installer execution
 #!/bin/bash
 #create folder structure
@@ -23,6 +23,7 @@ git clone https://github.com/bogdanseczkowski/OPTINUX
 cd ../..
 chmod +x /opt/OPTINUX/install.sh
 chmod +x /opt/OPTINUX/chroot.sh
+echo "/opt/OPTINUX/install.sh" >> /etc/conf.d/local.start
 rm iso-new/image.squashfs
 mksquashfs sqfs-new/ iso-new/image.squashfs
 echo \#\!/bin/bash >> create_iso.sh
