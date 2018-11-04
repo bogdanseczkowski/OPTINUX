@@ -11,6 +11,7 @@ while :; do
         read -erp "Enter drive for Strip Linux installation: " -i "/dev/sda" drive
         partition=${drive}1
     elif [[ $partitioning = "m" ]]; then
+        parted
         read -erp "Enter partition for Strip Linux installation: " -i "/dev/sda1" partition
         if [[ $partition == /dev/map* ]]; then
             read -erp "Enter drive that contains install partition: " -i "/dev/sda" drive
