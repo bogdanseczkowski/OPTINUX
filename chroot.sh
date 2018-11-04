@@ -4,8 +4,10 @@ eselect profile set "default/linux/amd64/17.0/hardened"
 emerge cpuid2cpuflags
 np=$(nproc)
 enp=`expr $np + 1`
+flag=$(gcc -c -Q -march=native --help=target |grep "\-march="|awk '$1=$1')
 echo '
-COMMON_FLAGS="-O3 -march=native -pipe"
+COMMON_FLAGS="-O3 -pipe '$flag\" >> /etc/portage/make.conf
+echo '
 CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"
 FCFLAGS="${COMMON_FLAGS}"
