@@ -1,6 +1,6 @@
 <h1 align="center">OPTINUX</h1>
 
-The **OPTINUX** project aims to create Linux distro that is well optimized and by that blazing fast. To achieve that install script adjust GCC flags for detected CPU and compiles Gentoo and Linux kernel from source. OPTILINUX install script is based on Clover OS scripts ([cleveros.ga](https://cloveros.ga/)). Currently, it uses Liquorix kernel config files.
+The **OPTINUX** project aims to create installation scripts for Gentoo Linux. OPTINUX is well optimized and by that blazing fast. To achieve that install script adjust GCC flags for detected CPU and compiles Gentoo and Linux kernel from source. OPTILINUX install script is based on Clover OS scripts ([cleveros.ga](https://cloveros.ga/)). Currently, it uses Liquorix kernel config files.
 
 ## Installing OPTINUX
   1. Download and burn Gentoo minimal live
