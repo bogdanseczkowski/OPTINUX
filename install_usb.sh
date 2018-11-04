@@ -1,4 +1,5 @@
 # this script is still WIP
+# todo automatic installer execution
 #!/bin/bash
 #create folder structure
 cd /tmp/
@@ -22,8 +23,8 @@ git clone https://github.com/bogdanseczkowski/OPTINUX
 cd ../..
 rm iso-new/image.squashfs
 mksquashfs sqfs-new/ iso-new/image.squashfs
-cd iso-new/
 echo \#\!/bin/bash >> create_iso.sh
+echo "cd iso-new/" >> create_iso.sh
 echo "mkisofs -R -b isolinux/isolinux.bin -no-emul-boot -boot-load-size 4 -boot-info-table -c isolinux/boot.cat -iso-level 3 -o ../livecd.iso . " >> create_iso.sh
 chmod +x create_iso.sh
 ./create_iso.sh
