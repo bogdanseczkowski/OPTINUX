@@ -8,7 +8,6 @@ The **OPTINUX** project aims to create Linux distro that is well optimized and b
   3. Download and run install.sh from OPTINUX Github.
   4. Reboot
 ### TODO
-  - [ ] Automatic MAKE OPTS
-  - [ ] automatic cflags generation (instead of -mtune=native)
+  - [ ] Automatic genkernel MAKE OPTS
   - [ ] automatic kernel config (genkernel all)
   - [ ] install usb
