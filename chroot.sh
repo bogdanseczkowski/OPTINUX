@@ -30,7 +30,6 @@ revdep-rebuild
 emerge git-sources genkernel curl 
 emerge app-arch/lz4
 wget https://raw.githubusercontent.com/bogdanseczkowski/STRIP-LINUX/master/config/4.18/config.amd64
-sed -i "s/CONFIG_EXT4_FS=m/CONFIG_EXT4_FS=y/g" config.amd64
 cd /usr/src/linux
 wget https://raw.githubusercontent.com/bogdanseczkowski/OPTINUX/master/config/patch/grasky2kernel.patch
 patch -Np1 -i ./grasky2kernel.patch
