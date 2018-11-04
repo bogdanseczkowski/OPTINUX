@@ -20,6 +20,8 @@ cp -a sqfs-old/ sqfs-new/
 cd sqfs-new/bin
 git clone https://github.com/bogdanseczkowski/OPTINUX
 cd ../..
+rm iso-new/image.squashfs
+mksquashfs sqfs-new/ iso-new/image.squashfs
 cd iso-new/
 echo \#\!/bin/bash >> create_iso.sh
 echo "mkisofs -R -b isolinux/isolinux.bin -no-emul-boot -boot-load-size 4 -boot-info-table -c isolinux/boot.cat -iso-level 3 -o ../livecd.iso . " >> create_iso.sh
